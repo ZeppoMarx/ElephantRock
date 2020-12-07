@@ -156,18 +156,6 @@ paths:
     get:
       summary: Your GET endpoint
       tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-            application/xml:
-              schema:
-                type: object
-                properties: {}
       operationId: get-weather
       description: 'Access current weather data for any location on Earth including over 200,000 cities! Current weather is frequently updated based on global models and data from more than 40,000 weather stations.'
       security:
@@ -208,6 +196,142 @@ paths:
           in: query
           name: lon
           description: '**Longitude**. *Example: 139*. Longitude coordinate of the location of your interest. Must use with `lat `.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  coord:
+                    type: object
+                    required:
+                      - lon
+                      - lat
+                    properties:
+                      lon:
+                        type: number
+                      lat:
+                        type: number
+                  weather:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        main:
+                          type: string
+                          minLength: 1
+                        description:
+                          type: string
+                          minLength: 1
+                        icon:
+                          type: string
+                          minLength: 1
+                      required:
+                        - id
+                        - main
+                        - description
+                        - icon
+                  base:
+                    type: string
+                    minLength: 1
+                  main:
+                    type: object
+                    required:
+                      - temp
+                      - feels_like
+                      - temp_min
+                      - temp_max
+                      - pressure
+                      - humidity
+                    properties:
+                      temp:
+                        type: number
+                      feels_like:
+                        type: number
+                      temp_min:
+                        type: number
+                      temp_max:
+                        type: number
+                      pressure:
+                        type: number
+                      humidity:
+                        type: number
+                  visibility:
+                    type: number
+                  wind:
+                    type: object
+                    required:
+                      - speed
+                      - deg
+                    properties:
+                      speed:
+                        type: number
+                      deg:
+                        type: number
+                  clouds:
+                    type: object
+                    required:
+                      - all
+                    properties:
+                      all:
+                        type: number
+                  dt:
+                    type: number
+                  sys:
+                    type: object
+                    required:
+                      - type
+                      - id
+                      - country
+                      - sunrise
+                      - sunset
+                    properties:
+                      type:
+                        type: number
+                      id:
+                        type: number
+                      country:
+                        type: string
+                        minLength: 1
+                      sunrise:
+                        type: number
+                      sunset:
+                        type: number
+                  timezone:
+                    type: number
+                  id:
+                    type: number
+                  name:
+                    type: string
+                    minLength: 1
+                  cod:
+                    type: number
+                  '':
+                    type: string
+                required:
+                  - coord
+                  - weather
+                  - base
+                  - main
+                  - visibility
+                  - wind
+                  - clouds
+                  - dt
+                  - sys
+                  - timezone
+                  - id
+                  - name
+                  - cod
+              examples:
+                example-1:
+                  value: {-1}
 components:
   schemas:
     User:
