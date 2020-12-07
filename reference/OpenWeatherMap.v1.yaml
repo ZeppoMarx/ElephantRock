@@ -198,7 +198,7 @@ components:
         - email
         - emailVerified
   securitySchemes:
-    API Key - 1:
+    66bea5a2c8348fa1ff3a7c99865ed684:
       name: API Key
       type: apiKey
       in: query
