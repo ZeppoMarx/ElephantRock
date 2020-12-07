@@ -1,21 +1,18 @@
 openapi: 3.0.0
 info:
-  title: openWeatherMap
-  version: '1.0'
+  title: OpenWeatherMap API
+  version: '2.5'
+  description: 'Get the current weather, daily forecast for 16 days, and a three-hour-interval forecast for 5 days for your city. Helpful stats, graphics, and this day in history charts are available for your reference. Interactive maps show precipitation, clouds, pressure, wind around your location stations. Data is available in JSON, XML, or HTML format. **Note**: This sample Swagger file covers the `current` endpoint only from the OpenWeatherMap API. <br/><br/> **Note**: All parameters are optional, but you must select at least one parameter. Calling the API by city ID (using the `id` parameter) will provide the most precise location results.'
   contact:
     name: Support
     url: 'https://openweathermap.org/api'
     email: thughes0828@gmail.com
   termsOfService: 'https://openweathermap.org/terms'
-  license:
-    name: CC Attribution-ShareAlike 4.0 (CC BY-SA 4.0)
-    url: 'https://openweathermap.org/price'
-  description: Get weather conditions for given ZIP code
 servers:
   - url: 'http://localhost:3000'
     description: Anthony Hughes
   - url: 'https://api.openweathermap.org/data/2.5'
-    description: WeatherAPI
+    description: Prod
 paths:
   '/users/{userId}':
     parameters:
@@ -155,33 +152,6 @@ paths:
                   dateOfBirth: '1996-08-24'
         description: Post the necessary fields for the API to create a new user.
       description: Create a new user.
-  /weather:
-    get:
-      summary: Weather
-      tags:
-        - weather endpoints
-      responses: {}
-      operationId: get-weather
-      description: Access current weather data by ZIP code
-      security:
-        - 66bea5a2c8348fa1ff3a7c99865ed684: []
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: ZIP
-          description: ZIP Code Value
-        - schema:
-            type: string
-          in: query
-          name: Units
-          description: 'standard, etc.'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties: {}
 components:
   schemas:
     User:
@@ -226,9 +196,7 @@ components:
         - email
         - emailVerified
   securitySchemes:
-    66bea5a2c8348fa1ff3a7c99865ed684:
-      name: API Key
+    app_id:
+      name: appid
       type: apiKey
       in: query
-tags:
-  - name: weather endpoints
