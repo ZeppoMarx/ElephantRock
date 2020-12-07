@@ -10,6 +10,7 @@ info:
   license:
     name: CC Attribution-ShareAlike 4.0 (CC BY-SA 4.0)
     url: 'https://openweathermap.org/price'
+  description: Get weather conditions for given ZIP code
 servers:
   - url: 'http://localhost:3000'
     description: Anthony Hughes
